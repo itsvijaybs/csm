@@ -25,7 +25,7 @@
  */
 @Library('csm-shared-library') _
 def pythonImage = 'artifactory.algol60.net/csm-docker/stable/csm-docker-sle-python'
-def pythonVersion = '3.10'
+def pythonVersion = '3.11'
 def promotionToken = ~"(main|master|release\\/.*)"
 def isStable = env.BRANCH_NAME ==~ promotionToken ? true : false
 pipeline {
