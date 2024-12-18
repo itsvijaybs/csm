@@ -133,6 +133,21 @@ fi
 # Deploy Nexus
 deploy "${BUILDDIR}/manifests/nexus.yaml"
 
+# Deploy Vshasta specific services
+function is_vshasta_node {
+    # This is the best check for an image specifically booted to vshasta
+    [[ -f /etc/google_system ]] && return 0
+
+    # metal images can still be booted on GCP, so check if there are any disks vendored by Google
+    # if not, we conclude that this is not GCP
+    lsblk --noheadings -o vendor | grep -q Google
+    return $?
+}
+
+if is_vshasta_node; then
+    deploy "${BUILDDIR}/manifests/vshasta.yaml"
+fi
+
 #
 # Remove the old etcd operator now that new manifests have been applied
 #
