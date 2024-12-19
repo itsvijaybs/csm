@@ -672,6 +672,34 @@ spec:
         kafkaReqCPU: "5"
         kafkaReqMem: 6Gi
         javaMinHeapSize: 5g
+      sma-vm-cluster:
+        vmselect:
+          resources:
+            limits:
+              cpu: 4
+              memory: 12Gi
+            requests:
+              cpu: 2
+              memory: 4Gi
+        vminsert:
+          resources:
+            limits:
+              cpu: 4
+              memory: 12Gi
+            requests:
+              cpu: 2
+              memory: 4Gi
+        vmstorage:
+          persistentVolume:
+            size: 1.6Ti
+            storageClass: sma-block-replicated
+          resources:
+            limits:
+              cpu: 8
+              memory: 16Gi
+            requests:
+              cpu: 4
+              memory: 8Gi
       sma-postgres-cluster:
         pgReqMem: 4Gi
         pgReqCPU: "2"
